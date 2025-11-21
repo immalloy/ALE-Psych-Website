@@ -69,24 +69,28 @@ a:hover {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 0.6em 0;
+    padding: 0.75em 1.25em;
     background: linear-gradient(to bottom, var(--bg-light), var(--bg-panel));
     border-bottom: 1px solid rgba(201, 145, 249, 0.25);
     box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.35);
     display: flex;
     justify-content: center;
-    gap: 3em;
+    gap: 1.5em 2.5em;
     align-items: center;
     z-index: 1000;
+    flex-wrap: wrap;
 }
 
 #mainHeader img {
-    height: 1.4em;
+    height: 1.5em;
+    flex: 0 0 auto;
 }
 
 #mainHeader a {
     color: var(--text-soft);
     font-size: 15px;
+    text-align: center;
+    white-space: nowrap;
 }
 
 #mainHeader a:hover {
@@ -156,4 +160,43 @@ a:hover {
     color: #c7b5ff;
     background: #0B0014;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 900px) {
+    #mainHeader {
+        gap: 1em 1.6em;
+        padding: 0.8em 1.1em;
+    }
+
+    #mainHeader a {
+        font-size: 14px;
+    }
+
+    .main-page {
+        margin-top: 6.8em;
+        padding: 1.8em 1.5em;
+    }
+}
+
+@media (max-width: 640px) {
+    #mainHeader {
+        justify-content: center;
+        gap: 0.85em 1.2em;
+        padding: 0.95em 0.9em;
+    }
+
+    #mainHeader img {
+        width: 100%;
+        max-width: 52px;
+        height: auto;
+    }
+
+    #mainHeader a {
+        width: calc(50% - 0.6em);
+    }
+
+    .main-page {
+        margin-top: 8em;
+        padding: 1.6em 1.1em;
+    }
 }
