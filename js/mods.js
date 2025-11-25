@@ -3,7 +3,9 @@
   const grid = document.getElementById('modsGrid');
   const empty = document.getElementById('emptyState');
   const filterBtns = Array.from(document.querySelectorAll('.filter-btn'));
-  const PLACEHOLDER_BANNER = '../assets/images/engine-branding/brandpitcure.png';
+  const pageRoot = document.body?.dataset?.rootBase || '..';
+  const modsBase = document.body?.dataset?.modsBase || '.';
+  const PLACEHOLDER_BANNER = `${pageRoot}/assets/images/engine-branding/brandpitcure.png`;
   const BANNER_EXTS = ['png', 'jpg', 'jpeg', 'webp'];
 
   function skeleton() {
@@ -29,7 +31,7 @@
     function tryNext() {
       if (i < BANNER_EXTS.length) {
         const ext = BANNER_EXTS[i++];
-        img.src = `./${slug}/modbanner.${ext}`;
+        img.src = `${modsBase}/${slug}/modbanner.${ext}`;
       } else {
         img.src = PLACEHOLDER_BANNER;
         img.onerror = null;
@@ -123,7 +125,7 @@
   }
 
   async function fetchMeta(slug) {
-    const url = `./${slug}/modmetadata.json?ts=${Date.now()}`;
+    const url = `${modsBase}/${slug}/modmetadata.json?ts=${Date.now()}`;
     try {
       const res = await fetch(url, { cache: 'no-store' });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);

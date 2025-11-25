@@ -109,6 +109,41 @@ a:hover {
     transition: max-height 0.25s ease, opacity 0.2s ease, transform 0.25s ease;
 }
 
+.language-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    color: var(--text-soft);
+    font-size: 14px;
+}
+
+.language-switcher label {
+    color: var(--text-soft);
+}
+
+.language-switcher select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 0.5em 0.95em;
+    border-radius: 10px;
+    border: 1px solid rgba(201, 145, 249, 0.25);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-soft);
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.2;
+    cursor: pointer;
+    min-width: 120px;
+}
+
+.language-switcher select:hover,
+.language-switcher select:focus-visible {
+    border-color: rgba(201, 145, 249, 0.6);
+    outline: none;
+    background: rgba(255, 255, 255, 0.08);
+}
+
 #mainHeader a {
     color: var(--text-soft);
     font-size: 15px;
@@ -228,6 +263,15 @@ a:hover {
         border-radius: 10px;
         width: 100%;
         text-align: center;
+    }
+
+    .language-switcher {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .language-switcher select {
+        width: 100%;
     }
 
     .main-page {

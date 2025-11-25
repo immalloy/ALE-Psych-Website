@@ -109,10 +109,11 @@ const matter = loadMatter();
 const { Remarkable } = loadRemarkable();
 
 const ROOT = path.resolve(__dirname, '..', '..');
-const SRC_DIR = path.join(ROOT, 'wiki');
-const OUT_DIR = path.join(ROOT, 'wiki');
+const SRC_BASE = path.join(ROOT, 'wiki');
+const OUT_BASE = path.join(ROOT, 'dist');
 const TEMPLATE_PATH = path.join(__dirname, 'wiki.html');
-const WIKI_JSON = path.join(SRC_DIR, 'wiki.json');
+const LOCALES = ['en', 'es'];
+const SITE_ORIGIN = 'https://ale-psych-crew.github.io/ALE-Psych-Website';
 
 const template = fs.readFileSync(TEMPLATE_PATH, 'utf8');
 
@@ -211,24 +212,25 @@ function humanize(str) {
   return str.replace(/[-_]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 }
 
-function readPage(mdPath) {
+function readPage(mdPath, srcDir, outDir, locale) {
   const raw = fs.readFileSync(mdPath, 'utf8');
   const parsed = (matter.default || matter)(raw);
   const data = parsed.data || {};
   const content = parsed.content || '';
-  const slug = fixPath(path.relative(SRC_DIR, mdPath)).replace(/\.md$/i, '');
+  const slug = fixPath(path.relative(srcDir, mdPath)).replace(/\.md$/i, '');
   const title = data.title || humanize(path.basename(slug));
   const desc = data.desc || title;
   return {
     mdPath,
-    htmlPath: path.join(OUT_DIR, `${slug}.html`),
+    htmlPath: path.join(outDir, `${slug}.html`),
     slug,
     title,
     desc,
     author: data.author || 'ALE Psych Crew',
     lastUpdated: data.lastUpdated || new Date().toISOString(),
     content,
-    giscusID: data.giscusID || slug
+    giscusID: data.giscusID || `${locale}-${slug}`,
+    locale
   };
 }
 
@@ -268,12 +270,12 @@ function buildSidebarTree(pages) {
   return root.children;
 }
 
-function buildSidebar(nodes, activeSlug, basePrefix) {
+function buildSidebar(nodes, activeSlug, wikiBase) {
   const walk = (items) => {
     let html = '<ul class="wiki-nav">';
     for (const item of items) {
       const hasPage = Boolean(item.slug);
-      const url = hasPage ? (item.slug === 'index' ? `${basePrefix}wiki/` : `${basePrefix}wiki/${fixPath(item.slug)}.html`) : '#';
+      const url = hasPage ? (item.slug === 'index' ? `${wikiBase}` : `${wikiBase}${fixPath(item.slug)}.html`) : '#';
       const isActive = hasPage && item.slug === activeSlug;
       const label = item.title || humanize(item.name);
       html += '<li>';
@@ -295,16 +297,26 @@ function buildSidebar(nodes, activeSlug, basePrefix) {
   return walk(nodes);
 }
 
+function computeBasePrefix(htmlPath) {
+  const rel = fixPath(path.relative(path.dirname(htmlPath), ROOT));
+  if (!rel || rel === '.') return './';
+  return rel.endsWith('/') ? rel : `${rel}/`;
+}
+
 function buildPage(page, sidebarTree) {
   const md = prepareMarkdown();
   const htmlContent = renderMarkdown(md, page.content);
-  const depth = page.slug.split('/').length - 1;
-  const basePrefix = '../'.repeat(depth + 1);
-  const sidebar = buildSidebar(sidebarTree, page.slug, basePrefix);
-  const canonicalPath = page.slug === 'index' ? 'wiki/' : `wiki/${fixPath(page.slug)}.html`;
-  const canonical = `https://ale-psych-crew.github.io/ALE-Psych-Website/${canonicalPath}`;
+  const basePrefix = computeBasePrefix(page.htmlPath);
+  const localeBase = `${basePrefix}${page.locale}/`;
+  const wikiBase = `${basePrefix}dist/${page.locale}/wiki/`;
+  const sidebar = buildSidebar(sidebarTree, page.slug, wikiBase);
+  const canonicalPath = page.slug === 'index' ? `dist/${page.locale}/wiki/` : `dist/${page.locale}/wiki/${fixPath(page.slug)}.html`;
+  const canonical = `${SITE_ORIGIN}/${canonicalPath}`;
   const socialImage = 'https://files.catbox.moe/6jqidi.png';
   const socialAlt = `ALE Psych [Rewritten] - ${page.title}`;
+  const labels = page.locale === 'es'
+    ? { home: 'Inicio', downloads: 'Descargas', mods: 'Mods', scripts: 'Scripts', wiki: 'Wiki', language: 'Idioma' }
+    : { home: 'Home', downloads: 'Downloads', mods: 'Mods', scripts: 'Scripts', wiki: 'Wiki', language: 'Language' };
 
   const filled = parseTemplate(template, {
     title: page.title,
@@ -319,7 +331,16 @@ function buildPage(page, sidebarTree) {
     sidebar,
     url: fixPath(page.slug),
     base: basePrefix,
+    wikiBase,
+    localeBase,
+    locale: page.locale,
     giscusID: page.giscusID,
+    navHome: labels.home,
+    navDownloads: labels.downloads,
+    navMods: labels.mods,
+    navScripts: labels.scripts,
+    navWiki: labels.wiki,
+    navLanguage: labels.language,
     isoDate,
     shortDate
   });
@@ -330,9 +351,9 @@ function buildPage(page, sidebarTree) {
   console.log(`Built ${page.htmlPath}`);
 }
 
-function copyMedia() {
-  const mediaSrc = path.join(SRC_DIR, 'media');
-  const mediaDest = path.join(OUT_DIR, 'media');
+function copyMedia(srcDir, outDir) {
+  const mediaSrc = path.join(srcDir, 'media');
+  const mediaDest = path.join(outDir, 'media');
   if (!fs.existsSync(mediaSrc)) return;
   fs.mkdirSync(mediaDest, { recursive: true });
   const entries = fs.readdirSync(mediaSrc, { withFileTypes: true });
@@ -348,7 +369,7 @@ function copyMedia() {
   }
 }
 
-function writeWikiJson(pages) {
+function writeWikiJson(pages, outDir) {
   const entries = pages.map(page => ({
     source: fixPath(path.relative(ROOT, page.mdPath)),
     html: fixPath(path.relative(ROOT, page.htmlPath)),
@@ -356,23 +377,36 @@ function writeWikiJson(pages) {
     title: page.title,
     lastUpdated: isoDate(page.lastUpdated)
   }));
-  fs.writeFileSync(WIKI_JSON, JSON.stringify(entries, null, 2));
-  console.log(`Wrote ${WIKI_JSON}`);
+  const jsonPath = path.join(outDir, 'wiki.json');
+  ensureDir(jsonPath);
+  fs.writeFileSync(jsonPath, JSON.stringify(entries, null, 2));
+  console.log(`Wrote ${jsonPath}`);
 }
 
-function main() {
-  const mdFiles = findMarkdownFiles(SRC_DIR);
-  const pages = mdFiles.map(readPage).sort((a, b) => {
+function buildLocale(locale) {
+  const srcDir = path.join(SRC_BASE, locale);
+  const outDir = path.join(OUT_BASE, locale, 'wiki');
+  if (!fs.existsSync(srcDir)) {
+    console.warn(`Skipping locale ${locale} (no source directory at ${srcDir})`);
+    return;
+  }
+
+  const mdFiles = findMarkdownFiles(srcDir);
+  const pages = mdFiles.map(md => readPage(md, srcDir, outDir, locale)).sort((a, b) => {
     if (a.slug === 'index') return -1;
     if (b.slug === 'index') return 1;
     return a.slug.localeCompare(b.slug);
   });
 
-  writeWikiJson(pages);
+  writeWikiJson(pages, outDir);
 
   const sidebarTree = buildSidebarTree(pages);
   pages.forEach(page => buildPage(page, sidebarTree));
-  copyMedia();
+  copyMedia(srcDir, outDir);
+}
+
+function main() {
+  LOCALES.forEach(buildLocale);
 }
 
 main();
