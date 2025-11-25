@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{locale}}">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -39,7 +39,7 @@
 <body>
   <header id="mainHeader" class="nav-collapsed nav-collapsible">
     <div class="header-left">
-      <a id="homeLogo" href="{{base}}" aria-label="ALE Psych Home">
+      <a id="homeLogo" href="{{localeBase}}" aria-label="ALE Psych Home">
         <img id="aleHeader" src="{{base}}assets/images/engine-branding/icon.png" alt="ALE Psych Logo">
       </a>
       <button id="headerToggle" class="header-toggle" aria-expanded="false" aria-controls="mainNav">
@@ -53,12 +53,19 @@
       </button>
     </div>
     <nav id="mainNav">
-      <a href="{{base}}">Home</a>
-      <a href="{{base}}downloads/">Downloads</a>
-      <a href="{{base}}mods/">Mods</a>
-      <a href="{{base}}scripts/">Scripts</a>
-      <a href="{{base}}wiki/" aria-current="page">Wiki</a>
+      <a href="{{localeBase}}">{{navHome}}</a>
+      <a href="{{localeBase}}downloads/">{{navDownloads}}</a>
+      <a href="{{localeBase}}mods/">{{navMods}}</a>
+      <a href="{{localeBase}}scripts/">{{navScripts}}</a>
+      <a href="{{wikiBase}}" aria-current="page">{{navWiki}}</a>
       <a href="https://github.com/ALE-Psych-Crew/ALE-Psych/blob/main/docs/lua/Home.md" target="_blank" rel="noopener">API (Lua)</a>
+      <div class="language-switcher">
+        <label for="languageSelect">{{navLanguage}}</label>
+        <select id="languageSelect" aria-label="Choose language">
+          <option value="en">English</option>
+          <option value="es">Español</option>
+        </select>
+      </div>
     </nav>
   </header>
 
@@ -77,7 +84,7 @@
       <div class="wiki-meta">
         <span>Written by {{author}}</span>
         <span>Last updated: <span id="last-updated" data-time="{{isoDate lastUpdated}}">{{shortDate lastUpdated}}</span></span>
-        <a class="wiki-edit" href="https://github.com/ALE-Psych-Crew/ALE-Psych-Website/tree/main/wiki/{{url}}.md">Edit</a>
+        <a class="wiki-edit" href="https://github.com/ALE-Psych-Crew/ALE-Psych-Website/tree/main/wiki/{{locale}}/{{url}}.md">Edit</a>
       </div>
 
       <div class="giscus"></div>
@@ -93,7 +100,7 @@
     <div class="footer-links">
         <a href="https://github.com/ALE-Psych-Crew/ALE-Psych-Website" target="_blank" rel="noopener">Contribute to Website</a>
         <a href="https://github.com/ALE-Psych-Crew/ALE-Psych?tab=readme-ov-file#latest-builds" target="_blank" rel="noopener">Latest Builds</a>
-        <a href="{{base}}wiki/index.html" target="_blank" rel="noopener">Engine Wiki</a>
+        <a href="{{wikiBase}}index.html" target="_blank" rel="noopener">Engine Wiki</a>
         <a href="https://github.com/ALE-Psych-Crew/ALE-Psych/blob/main/docs/lua/Home.md" target="_blank" rel="noopener">Engine API (Lua)</a>
         <a href="https://github.com/topics/ale-psych" target="_blank" rel="noopener">Git Topic (ALE Psych)</a>
     </div>
@@ -121,7 +128,7 @@
           data-emit-metadata="0"
           data-input-position="top"
           data-theme="catppuccin_mocha"
-          data-lang="en"
+          data-lang="{{locale}}"
           crossorigin="anonymous"
           async>
   </script>
