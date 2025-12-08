@@ -31,6 +31,8 @@
     <meta content="ALE Psych [Rewritten] - scripts and tools" name="twitter:image:alt"/>
     <link href="../css/global.css" rel="stylesheet"/>
     <link href="../css/scripts.css" rel="stylesheet"/>
+    <script defer="" src="../js/i18n.js">
+    </script>
     <script defer="" src="../js/global.js">
     </script>
 </head>
@@ -41,7 +43,7 @@
                 <img alt="ALE Psych Logo" id="aleHeader" src="../assets/images/engine-branding/icon.png"/>
             </a>
         <button aria-controls="mainNav" aria-expanded="false" class="header-toggle" id="headerToggle">
-            <span class="visually-hidden">
+            <span class="visually-hidden" data-i18n="nav.toggle">
                 Toggle navigation
             </span>
         <svg aria-hidden="true" class="icon-menu" focusable="false" viewbox="0 0 24 24">
@@ -55,32 +57,45 @@
 </button>
 </div>
 <nav id="mainNav">
-    <a href="../">
+    <a data-i18n="nav.home" href="../">
         Home
     </a>
-<a href="../downloads/">
+<a data-i18n="nav.downloads" href="../downloads/">
     Downloads
 </a>
-<a href="../mods/">
+<a data-i18n="nav.mods" href="../mods/">
     Mods
 </a>
-<a aria-current="page" href="../scripts/">
+<a aria-current="page" data-i18n="nav.scripts" href="../scripts/">
     Scripts
 </a>
-<a href="../wiki/">
+<a data-i18n="nav.wiki" href="../wiki/">
     Wiki
 </a>
-<a href="https://github.com/ALE-Psych-Crew/ALE-Psych/blob/main/docs/lua/Home.md" rel="noopener" target="_blank">
+<a data-i18n="nav.api" href="https://github.com/ALE-Psych-Crew/ALE-Psych/blob/main/docs/lua/Home.md" rel="noopener" target="_blank">
     API (Lua)
 </a>
 </nav>
+<div class="lang-switcher">
+    <label for="languageSelect" data-i18n="nav.language">
+        Language
+    </label>
+<select aria-label="Language" data-i18n-aria-label="nav.language" data-i18n-attrs="aria-label" id="languageSelect">
+    <option value="en">
+        English
+    </option>
+<option value="es">
+    Español
+</option>
+</select>
+</div>
 </header>
 <main class="main-page">
     <section id="scriptsHeader">
-        <h1>
+        <h1 data-i18n="scripts.heading">
             Community Scripts &amp; Tools
         </h1>
-    <p class="lead">
+    <p class="lead" data-i18n="scripts.lead">
         Find and share scripts built for ALE Psych - from helpers and utilities to full gameplay systems.
     </p>
 </section>
@@ -89,9 +104,9 @@
         <img alt="" class="icon" height="22" src="../assets/svg/index/github.svg" width="22"/>
         <span class="btnText">
             <span class="btnTitle">
-                GitHub Topics
+                <span data-i18n="scripts.topic.title">GitHub Topics</span>
             </span>
-        <span class="btnSub">
+        <span class="btnSub" data-i18n="scripts.topic.sub">
             Scripts &amp; tools for ALE Psych
         </span>
 </span>
@@ -100,9 +115,9 @@
     <img alt="" class="icon" height="22" src="../assets/svg/index/discord.svg" width="22"/>
     <span class="btnText">
         <span class="btnTitle">
-            Discord Server
+            <span data-i18n="scripts.discord.title">Discord Server</span>
         </span>
-    <span class="btnSub">
+    <span class="btnSub" data-i18n="scripts.discord.sub">
         Join the community &amp; support
     </span>
 </span>
@@ -111,61 +126,61 @@
     <img alt="" class="icon" height="22" src="../assets/svg/index/discord.svg" width="22"/>
     <span class="btnText">
         <span class="btnTitle">
-            Scripts Channel
+            <span data-i18n="scripts.channel.title">Scripts Channel</span>
         </span>
-    <span class="btnSub">
+    <span class="btnSub" data-i18n="scripts.channel.sub">
         Requires joining the server
     </span>
 </span>
 </a>
 </section>
 <p class="scriptsNote">
-    Already joined?
+    <span data-i18n="scripts.already">Already joined?</span>
     <a class="scriptsDeepLink" href="https://discord.com/channels/1285303468772425779/1385460090672386079" rel="noopener" target="_blank">
-        Open the Scripts Channel
+        <span data-i18n="scripts.channel.open">Open the Scripts Channel</span>
     </a>
 </p>
 <section aria-label="What you'll find" id="scriptsInfo">
     <div class="infoCard">
-        <h2>
+        <h2 data-i18n="scripts.info.title">
             What you'll find
         </h2>
     <ul>
         <li>
-            Reusable Lua/HScript snippets for common engine tasks.
+            <span data-i18n="scripts.info.item1">Reusable Lua/HScript snippets for common engine tasks.</span>
         </li>
     <li>
-        Tools and helpers for mod pipelines (packaging, assets, automation).
+        <span data-i18n="scripts.info.item2">Tools and helpers for mod pipelines (packaging, assets, automation).</span>
     </li>
 <li>
-    Examples demonstrating inputs, menus, RuleScript, and more.
+    <span data-i18n="scripts.info.item3">Examples demonstrating inputs, menus, RuleScript, and more.</span>
 </li>
 </ul>
 <p class="hint">
-    Tip: tag your GitHub repo with
-    <code>
+    <span data-i18n="scripts.info.tip">Tip: tag your GitHub repo with</span>
+    <code data-i18n="scripts.info.code">
         ale-psych
     </code>
-so it shows up under Topics.
+<span data-i18n="scripts.info.afterTip">so it shows up under Topics.</span>
 </p>
 </div>
 </section>
 </main>
 <footer id="aleFooter">
     <div class="footer-links">
-        <a href="https://github.com/ALE-Psych-Crew/ALE-Psych-Website" rel="noopener" target="_blank">
+        <a data-i18n="footer.contribute" href="https://github.com/ALE-Psych-Crew/ALE-Psych-Website" rel="noopener" target="_blank">
             Contribute to Website
         </a>
-    <a href="https://github.com/ALE-Psych-Crew/ALE-Psych?tab=readme-ov-file#latest-builds" rel="noopener" target="_blank">
+    <a data-i18n="footer.builds" href="https://github.com/ALE-Psych-Crew/ALE-Psych?tab=readme-ov-file#latest-builds" rel="noopener" target="_blank">
         Latest Builds
     </a>
-<a href="../wiki/index.html" rel="noopener" target="_blank">
+<a data-i18n="footer.wiki" href="../wiki/index.html" rel="noopener" target="_blank">
     Engine Wiki
 </a>
-<a href="https://github.com/ALE-Psych-Crew/ALE-Psych/blob/main/docs/lua/Home.md" rel="noopener" target="_blank">
+<a data-i18n="footer.api" href="https://github.com/ALE-Psych-Crew/ALE-Psych/blob/main/docs/lua/Home.md" rel="noopener" target="_blank">
     Engine API (Lua)
 </a>
-<a href="https://github.com/topics/ale-psych" rel="noopener" target="_blank">
+<a data-i18n="footer.topic" href="https://github.com/topics/ale-psych" rel="noopener" target="_blank">
     Git Topic (ALE Psych)
 </a>
 </div>
@@ -184,7 +199,7 @@ so it shows up under Topics.
 </a>
 </div>
 </footer>
-<div id="footerCredits">
+<div data-i18n="footer.credits" id="footerCredits">
     ALE Psych [Rewritten] · Created by Alejo GD Official and THE VOID · Website by ImMalloy
 </div>
 </body>

@@ -31,6 +31,8 @@
     <meta content="ALE Psych [Rewritten] - fast, moddable FNF engine" name="twitter:image:alt"/>
     <link href="css/global.css" rel="stylesheet"/>
     <link href="css/index.css" rel="stylesheet"/>
+    <script defer="" src="js/i18n.js">
+    </script>
     <script defer="" src="js/global.js">
     </script>
 <script defer="" src="js/features.js">
@@ -43,7 +45,7 @@
                 <img alt="ALE Psych Logo" id="aleHeader" src="assets/images/engine-branding/icon.png"/>
             </a>
         <button aria-controls="mainNav" aria-expanded="false" class="header-toggle" id="headerToggle">
-            <span class="visually-hidden">
+            <span class="visually-hidden" data-i18n="nav.toggle">
                 Toggle navigation
             </span>
         <svg aria-hidden="true" class="icon-menu" focusable="false" viewbox="0 0 24 24">
@@ -57,32 +59,45 @@
 </button>
 </div>
 <nav id="mainNav">
-    <a aria-current="page" href="./">
+    <a aria-current="page" data-i18n="nav.home" href="./">
         Home
     </a>
-<a href="downloads/">
+<a data-i18n="nav.downloads" href="downloads/">
     Downloads
 </a>
-<a href="mods/">
+<a data-i18n="nav.mods" href="mods/">
     Mods
 </a>
-<a href="scripts/">
+<a data-i18n="nav.scripts" href="scripts/">
     Scripts
 </a>
-<a href="wiki/">
+<a data-i18n="nav.wiki" href="wiki/">
     Wiki
 </a>
-<a href="https://github.com/ALE-Psych-Crew/ALE-Psych/blob/main/docs/lua/Home.md" rel="noopener" target="_blank">
+<a data-i18n="nav.api" href="https://github.com/ALE-Psych-Crew/ALE-Psych/blob/main/docs/lua/Home.md" rel="noopener" target="_blank">
     API (Lua)
 </a>
 </nav>
+<div class="lang-switcher">
+    <label for="languageSelect" data-i18n="nav.language">
+        Language
+    </label>
+<select aria-label="Language" data-i18n-aria-label="nav.language" data-i18n-attrs="aria-label" id="languageSelect">
+    <option value="en">
+        English
+    </option>
+<option value="es">
+    Español
+</option>
+</select>
+</div>
 </header>
 <section class="main-page" id="homeContainer">
     <div id="promoBox">
         <img alt="Promo Image" id="promoImage" src="assets/images/engine-branding/brandpitcure.png"/>
     </div>
 <div id="downloadBox">
-    <h2>
+    <h2 data-i18n="downloads.title">
         Downloads
     </h2>
 <div class="downloadGrid">
@@ -93,13 +108,15 @@
     target="_blank"
     rel="noopener noreferrer"
     aria-label="Download Windows 64-bit build"
+    data-i18n-attrs="aria-label"
+    data-i18n-aria-label="downloads.card.windows.aria"
     >
     <img class="dl-icon" src="assets/svg/index/win64.svg" alt="" width="24" height="24" />
     <div class="dl-body">
-        <span class="dl-title">Windows</span>
-        <span class="dl-sub">ZIP · Win x64</span>
+        <span class="dl-title" data-i18n="downloads.card.windows.title">Windows</span>
+        <span class="dl-sub" data-i18n="downloads.card.windows.sub">ZIP · Win x64</span>
     </div>
-<span class="dl-cta">Download</span>
+<span class="dl-cta" data-i18n="downloads.cta">Download</span>
 </a>
 
 <a
@@ -108,13 +125,15 @@ href="https://nightly.link/ALE-Psych-Crew/ALE-Psych/workflows/builds.yaml/main/M
 target="_blank"
 rel="noopener noreferrer"
 aria-label="Download macOS (Universal/ARM) build"
+data-i18n-attrs="aria-label"
+data-i18n-aria-label="downloads.card.macos.aria"
 >
 <img class="dl-icon" src="assets/svg/index/macos.svg" alt="" width="24" height="24" />
 <div class="dl-body">
-    <span class="dl-title">macOS</span>
-    <span class="dl-sub">ZIP · Universal/ARM</span>
+    <span class="dl-title" data-i18n="downloads.card.macos.title">macOS</span>
+    <span class="dl-sub" data-i18n="downloads.card.macos.sub">ZIP · Universal/ARM</span>
 </div>
-<span class="dl-cta">Download</span>
+<span class="dl-cta" data-i18n="downloads.cta">Download</span>
 </a>
 
 <a
@@ -123,43 +142,47 @@ href="https://nightly.link/ALE-Psych-Crew/ALE-Psych/workflows/builds.yaml/main/L
 target="_blank"
 rel="noopener noreferrer"
 aria-label="Download Linux build"
+data-i18n-attrs="aria-label"
+data-i18n-aria-label="downloads.card.linux.aria"
 >
 <img class="dl-icon" src="assets/svg/index/linux.svg" alt="" width="24" height="24" />
 <div class="dl-body">
-    <span class="dl-title">Linux</span>
-    <span class="dl-sub">ZIP</span>
+    <span class="dl-title" data-i18n="downloads.card.linux.title">Linux</span>
+    <span class="dl-sub" data-i18n="downloads.card.linux.sub">ZIP</span>
 </div>
-<span class="dl-cta">Download</span>
+<span class="dl-cta" data-i18n="downloads.cta">Download</span>
 </a>
 
 <a
 class="downloadCard"
 href="downloads/"
 aria-label="View other downloads"
+data-i18n-attrs="aria-label"
+data-i18n-aria-label="downloads.card.other.aria"
 >
 <img class="dl-icon" src="assets/svg/index/otherdevice.svg" alt="" width="24" height="24" />
 <div class="dl-body">
-    <span class="dl-title">Other downloads</span>
-    <span class="dl-sub">Android, iOS, Win 32-bit…</span>
+    <span class="dl-title" data-i18n="downloads.card.other.title">Other downloads</span>
+    <span class="dl-sub" data-i18n="downloads.card.other.sub">Android, iOS, Win 32-bit…</span>
 </div>
-<span class="dl-cta">Open</span>
+<span class="dl-cta" data-i18n="downloads.open">Open</span>
 </a>
 </div>
 </div>
 <div class="releaseRow">
     <a class="releaseButton" href="https://github.com/ALE-Psych-Crew/ALE-Psych/releases" rel="noopener" target="_blank">
         <img alt="GitHub icon" height="20" src="assets/svg/index/github.svg" width="20"/>
-        <span>
+        <span data-i18n="releases.button">
             View GitHub Releases
         </span>
-</a>
-<span class="releaseNote">
+    </a>
+<span class="releaseNote" data-i18n="downloads.note">
     Stable builds and changelogs live on our releases page.
 </span>
 </div>
 </section>
 <section id="featuresSection">
-    <h2>
+    <h2 data-i18n="features.heading">
         Main Features
     </h2>
 <div id="featureCarousel">
@@ -181,39 +204,39 @@ aria-label="View other downloads"
 </div>
 </section>
 <section id="communitySection">
-    <h2>
+    <h2 data-i18n="community.heading">
         Community
     </h2>
 <div id="communityButtons">
     <a class="communityButton" href="https://github.com/topics/ale-psych" target="_blank">
         <img alt="" class="icon" src="assets/svg/index/github.svg"/>
-        Git Topic (ALE Psych)
+        <span data-i18n="community.topic">Git Topic (ALE Psych)</span>
     </a>
 <a class="communityButton" href="https://discord.gg/NP4U9CUrsH" target="_blank">
     <img alt="" class="icon" src="assets/svg/index/discord.svg"/>
-    Discord Server
+    <span data-i18n="community.discord">Discord Server</span>
 </a>
 <a class="communityButton" href="mods.html">
     <img alt="" class="icon" src="assets/svg/index/gamebanana.svg"/>
-    Mods Page
+    <span data-i18n="community.mods">Mods Page</span>
 </a>
 </div>
 </section>
 <footer id="aleFooter">
     <div class="footer-links">
-        <a href="https://github.com/ALE-Psych-Crew/ALE-Psych-Website" target="_blank">
+        <a data-i18n="footer.contribute" href="https://github.com/ALE-Psych-Crew/ALE-Psych-Website" target="_blank">
             Contribute to Website
         </a>
-    <a href="https://github.com/ALE-Psych-Crew/ALE-Psych?tab=readme-ov-file#latest-builds" target="_blank">
+    <a data-i18n="footer.builds" href="https://github.com/ALE-Psych-Crew/ALE-Psych?tab=readme-ov-file#latest-builds" target="_blank">
         Latest Builds
     </a>
-<a href="wiki/index.html" target="_blank">
+<a data-i18n="footer.wiki" href="wiki/index.html" target="_blank">
     Engine Wiki
 </a>
-<a href="https://github.com/ALE-Psych-Crew/ALE-Psych/blob/main/docs/lua/Home.md" target="_blank">
+<a data-i18n="footer.api" href="https://github.com/ALE-Psych-Crew/ALE-Psych/blob/main/docs/lua/Home.md" target="_blank">
     Engine API (Lua)
 </a>
-<a href="https://github.com/topics/ale-psych" target="_blank">
+<a data-i18n="footer.topic" href="https://github.com/topics/ale-psych" target="_blank">
     Git Topic (ALE Psych)
 </a>
 </div>
@@ -232,7 +255,7 @@ aria-label="View other downloads"
 </a>
 </div>
 </footer>
-<div id="footerCredits">
+<div data-i18n="footer.credits" id="footerCredits">
     ALE Psych [Rewritten] · Created by Alejo GD Official and THE VOID · Website by ImMalloy
 </div>
 </body>
