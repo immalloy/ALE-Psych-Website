@@ -47,6 +47,11 @@
     const defaultVal = translationCache[DEFAULT_LANG]?.[key];
     if (defaultVal !== undefined) return defaultVal;
 
+    // If translations are still loading, avoid logging missing key warnings until the fetch completes.
+    if (pendingLoads[currentLang] || pendingLoads[DEFAULT_LANG]) {
+      return fallback ?? key;
+    }
+
     warnMissing(key, currentLang);
     return fallback ?? key;
   }
