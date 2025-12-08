@@ -83,6 +83,27 @@ a:hover {
     transition: padding 0.2s ease;
 }
 
+.lang-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45em;
+    color: var(--text-soft);
+    font-size: 14px;
+}
+
+.lang-switcher label {
+    font-weight: 700;
+}
+
+.lang-switcher select {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(201, 145, 249, 0.4);
+    border-radius: 10px;
+    color: var(--text-main);
+    padding: 0.45em 0.85em;
+    font-family: 'Jetbrains', monospace;
+}
+
 .header-left {
     display: inline-flex;
     align-items: center;
@@ -182,6 +203,11 @@ a:hover {
 
     #mainNav {
         gap: 1.1em;
+    }
+
+    .lang-switcher {
+        width: 100%;
+        justify-content: flex-start;
     }
 }
 

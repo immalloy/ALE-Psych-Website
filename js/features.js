@@ -1,47 +1,43 @@
 // /js/features.js
 (function () {
+  const t = window.i18n?.t || ((key) => key);
+
   const FEATURES = [
     {
-      title: "Scripted Menus & Submenus",
-      description:
-        "Create full custom menus using Lua or HScript, including submenus, transitions, and dynamic UI elements.",
+      titleKey: "features.scripted.title",
+      descriptionKey: "features.scripted.desc",
       image: "assets/images/features/feature1.png",
-      alt: "Custom scripted menu with submenu transitions"
+      altKey: "features.scripted.alt"
     },
     {
-      title: "Easy Moddability",
-      description:
-        "A clean folder structure and engine tools designed to make modding simple, readable, and fast.",
+      titleKey: "features.moddability.title",
+      descriptionKey: "features.moddability.desc",
       image: "assets/images/features/feature2.png",
-      alt: "Folders and tools for quick modding"
+      altKey: "features.moddability.alt"
     },
     {
-      title: "Unique Mod Support",
-      description:
-        "ALE Psych [Rewritten] lets each mod define its own logic, resources, and systems without conflicts.",
+      titleKey: "features.unique.title",
+      descriptionKey: "features.unique.desc",
       image: "assets/images/features/feature3.png",
-      alt: "Multiple mods listed without conflicts"
+      altKey: "features.unique.alt"
     },
     {
-      title: "In-Game Console (F2)",
-      description:
-        "Debug your mod with a powerful in-game console supporting commands, log output, and error reports.",
+      titleKey: "features.console.title",
+      descriptionKey: "features.console.desc",
       image: "assets/images/features/feature4.png",
-      alt: "In-game console showing logs and commands"
+      altKey: "features.console.alt"
     },
     {
-      title: "RuleScript Integration",
-      description:
-        "Supercharge your HScript mods with RuleScript, unlocking big scripting capabilities and advanced behaviors.",
+      titleKey: "features.rulescript.title",
+      descriptionKey: "features.rulescript.desc",
       image: "assets/images/features/feature5.png",
-      alt: "RuleScript code sample"
+      altKey: "features.rulescript.alt"
     },
     {
-      title: "Community Driven",
-      description:
-        "ALE Psych evolves with its user base. Suggestions, mods, and feedback directly shape the engine.",
+      titleKey: "features.community.title",
+      descriptionKey: "features.community.desc",
       image: "assets/images/features/feature6.png",
-      alt: "Community discussion and feedback"
+      altKey: "features.community.alt"
     }
   ];
 
@@ -65,9 +61,9 @@
   function render(i) {
     const f = FEATURES[i];
     img.src = f.image;
-    img.alt = f.alt || f.title || "";
-    title.textContent = f.title;
-    desc.textContent = f.description;
+    img.alt = t(f.altKey, f.titleKey);
+    title.textContent = t(f.titleKey, f.titleKey);
+    desc.textContent = t(f.descriptionKey, f.descriptionKey);
   }
 
   function animateOut(dir) {
@@ -139,5 +135,9 @@
   } else {
     init();
     autoStart();
+  }
+
+  if (window.i18n?.onChange) {
+    window.i18n.onChange(() => render(index));
   }
 })();

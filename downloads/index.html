@@ -31,6 +31,8 @@
     <meta content="ALE Psych [Rewritten] - downloads" name="twitter:image:alt"/>
     <link href="../css/global.css" rel="stylesheet"/>
     <link href="../css/downloads.css" rel="stylesheet"/>
+    <script defer="" src="../js/i18n.js">
+    </script>
     <script defer="" src="../js/global.js">
     </script>
 </head>
@@ -41,7 +43,7 @@
                 <img alt="ALE Psych Logo" id="aleHeader" src="../assets/images/engine-branding/icon.png"/>
             </a>
         <button aria-controls="mainNav" aria-expanded="false" class="header-toggle" id="headerToggle">
-            <span class="visually-hidden">
+            <span class="visually-hidden" data-i18n="nav.toggle">
                 Toggle navigation
             </span>
         <svg aria-hidden="true" class="icon-menu" focusable="false" viewbox="0 0 24 24">
@@ -55,131 +57,144 @@
 </button>
 </div>
 <nav id="mainNav">
-    <a href="../">
+    <a data-i18n="nav.home" href="../">
         Home
     </a>
-<a aria-current="page" href="../downloads/">
+<a aria-current="page" data-i18n="nav.downloads" href="../downloads/">
     Downloads
 </a>
-<a href="../mods/">
+<a data-i18n="nav.mods" href="../mods/">
     Mods
 </a>
-<a href="../scripts/">
+<a data-i18n="nav.scripts" href="../scripts/">
     Scripts
 </a>
-<a href="../wiki/">
+<a data-i18n="nav.wiki" href="../wiki/">
     Wiki
 </a>
-<a href="https://github.com/ALE-Psych-Crew/ALE-Psych/blob/main/docs/lua/Home.md" rel="noopener" target="_blank">
+<a data-i18n="nav.api" href="https://github.com/ALE-Psych-Crew/ALE-Psych/blob/main/docs/lua/Home.md" rel="noopener" target="_blank">
     API (Lua)
 </a>
 </nav>
+<div class="lang-switcher">
+    <label for="languageSelect" data-i18n="nav.language">
+        Language
+    </label>
+<select aria-label="Language" data-i18n-aria-label="nav.language" data-i18n-attrs="aria-label" id="languageSelect">
+    <option value="en">
+        English
+    </option>
+<option value="es">
+    Español
+</option>
+</select>
+</div>
 </header>
 <main class="main-page">
     <section id="dlHeader">
-        <h1>
+        <h1 data-i18n="downloads.title">
             Downloads
         </h1>
-    <p class="lead">
+    <p class="lead" data-i18n="downloads.lead">
         Nightly builds for Windows, Android, and Linux. Cards open in a new tab.
     </p>
 </section>
 <section aria-label="Download options" id="dlGrid">
-    <a aria-label="Download Windows 64-bit ZIP" class="dlCard" href="https://nightly.link/ALE-Psych-Crew/ALE-Psych/workflows/builds.yaml/main/Windows%20Build.zip" rel="noopener" target="_blank">
+    <a aria-label="Download Windows 64-bit ZIP" class="dlCard" data-i18n-aria-label="downloads.card.windows.aria" data-i18n-attrs="aria-label" href="https://nightly.link/ALE-Psych-Crew/ALE-Psych/workflows/builds.yaml/main/Windows%20Build.zip" rel="noopener" target="_blank">
         <img alt="" class="dlIcon" height="24" src="../assets/svg/index/win64.svg" width="24"/>
         <div class="dlBody">
-            <span class="dlTitle">
+            <span class="dlTitle" data-i18n="downloads.card.windows.title">
                 Windows 64-bit
             </span>
-        <span class="dlSub">
+        <span class="dlSub" data-i18n="downloads.card.windows.sub">
             ZIP · Win x64
         </span>
 </div>
-<span class="dlCTA">
+<span class="dlCTA" data-i18n="downloads.cta">
     Download
 </span>
 </a>
-<a aria-label="Download Windows 32-bit ZIP" class="dlCard" href="https://nightly.link/ALE-Psych-Crew/ALE-Psych/workflows/builds.yaml/main/Windows%20x32%20Build.zip" rel="noopener" target="_blank">
+<a aria-label="Download Windows 32-bit ZIP" class="dlCard" data-i18n-aria-label="downloads.card.win32.aria" data-i18n-attrs="aria-label" href="https://nightly.link/ALE-Psych-Crew/ALE-Psych/workflows/builds.yaml/main/Windows%20x32%20Build.zip" rel="noopener" target="_blank">
     <img alt="" class="dlIcon" height="24" src="../assets/svg/index/win32.svg" width="24"/>
     <div class="dlBody">
-        <span class="dlTitle">
+        <span class="dlTitle" data-i18n="downloads.card.win32.title">
             Windows 32-bit
         </span>
-    <span class="dlSub">
+    <span class="dlSub" data-i18n="downloads.card.win32.sub">
         ZIP · Win x86
     </span>
 </div>
-<span class="dlCTA">
+<span class="dlCTA" data-i18n="downloads.cta">
     Download
 </span>
 </a>
-<a aria-label="Download Android build" class="dlCard" href="https://nightly.link/ALE-Psych-Crew/ALE-Psych/workflows/builds.yaml/main/Android%20Build.zip" rel="noopener" target="_blank">
+<a aria-label="Download Android build" class="dlCard" data-i18n-aria-label="downloads.card.android.aria" data-i18n-attrs="aria-label" href="https://nightly.link/ALE-Psych-Crew/ALE-Psych/workflows/builds.yaml/main/Android%20Build.zip" rel="noopener" target="_blank">
     <img alt="" class="dlIcon" height="24" src="../assets/svg/index/android.svg" width="24"/>
     <div class="dlBody">
-        <span class="dlTitle">
+        <span class="dlTitle" data-i18n="downloads.card.android.title">
             Android
         </span>
-    <span class="dlSub">
-        APK/ZIP · Android
+    <span class="dlSub" data-i18n="downloads.card.android.sub">
+        APK
     </span>
 </div>
-<span class="dlCTA">
+<span class="dlCTA" data-i18n="downloads.cta">
     Download
 </span>
 </a>
-<a aria-label="Download Linux build" class="dlCard" href="https://nightly.link/ALE-Psych-Crew/ALE-Psych/workflows/builds.yaml/main/Linux%20Build.zip" rel="noopener" target="_blank">
+<a aria-label="Download Linux build" class="dlCard" data-i18n-aria-label="downloads.card.linux.aria" data-i18n-attrs="aria-label" href="https://nightly.link/ALE-Psych-Crew/ALE-Psych/workflows/builds.yaml/main/Linux%20Build.zip" rel="noopener" target="_blank">
     <img alt="" class="dlIcon" height="24" src="../assets/svg/index/linux.svg" width="24"/>
     <div class="dlBody">
-        <span class="dlTitle">
+        <span class="dlTitle" data-i18n="downloads.card.linux.title">
             Linux
         </span>
-    <span class="dlSub">
+    <span class="dlSub" data-i18n="downloads.card.linux.sub">
         ZIP
     </span>
 </div>
-<span class="dlCTA">
+<span class="dlCTA" data-i18n="downloads.cta">
     Download
 </span>
 </a>
-<a aria-label="Download iOS build" class="dlCard" href="https://nightly.link/ALE-Psych-Crew/ALE-Psych/workflows/builds.yaml/main/iOS%20Build.zip" rel="noopener" target="_blank">
+<a aria-label="Download iOS build" class="dlCard" data-i18n-aria-label="downloads.card.ios.aria" data-i18n-attrs="aria-label" href="https://nightly.link/ALE-Psych-Crew/ALE-Psych/workflows/builds.yaml/main/iOS%20Build.zip" rel="noopener" target="_blank">
     <img alt="" class="dlIcon" height="24" src="../assets/svg/index/ios.svg" width="24"/>
     <div class="dlBody">
-        <span class="dlTitle">
+        <span class="dlTitle" data-i18n="downloads.card.ios.title">
             iOS
         </span>
-    <span class="dlSub">
-        IPA/ZIP · iPhone/iPad
+    <span class="dlSub" data-i18n="downloads.card.ios.sub">
+        IPA
     </span>
 </div>
-<span class="dlCTA">
+<span class="dlCTA" data-i18n="downloads.cta">
     Download
 </span>
 </a>
-<a aria-label="Download macOS (Universal/ARM)" class="dlCard" href="https://nightly.link/ALE-Psych-Crew/ALE-Psych/workflows/builds.yaml/main/MacOS%20Build.zip" rel="noopener" target="_blank">
+<a aria-label="Download macOS (Universal/ARM)" class="dlCard" data-i18n-aria-label="downloads.card.macos.aria" data-i18n-attrs="aria-label" href="https://nightly.link/ALE-Psych-Crew/ALE-Psych/workflows/builds.yaml/main/MacOS%20Build.zip" rel="noopener" target="_blank">
     <img alt="" class="dlIcon" height="24" src="../assets/svg/index/macos.svg" width="24"/>
     <div class="dlBody">
-        <span class="dlTitle">
+        <span class="dlTitle" data-i18n="downloads.card.macos.title">
             macOS
         </span>
-    <span class="dlSub">
+    <span class="dlSub" data-i18n="downloads.card.macos.sub">
         ZIP · Universal/ARM
     </span>
 </div>
-<span class="dlCTA">
+<span class="dlCTA" data-i18n="downloads.cta">
     Download
 </span>
 </a>
-<a aria-label="Download macOS x64 (Intel)" class="dlCard" href="https://nightly.link/ALE-Psych-Crew/ALE-Psych/workflows/builds.yaml/main/MacOS%20x64%20Build.zip" rel="noopener" target="_blank">
+<a aria-label="Download macOS x64 (Intel)" class="dlCard" data-i18n-aria-label="downloads.card.macosx64.aria" data-i18n-attrs="aria-label" href="https://nightly.link/ALE-Psych-Crew/ALE-Psych/workflows/builds.yaml/main/MacOS%20x64%20Build.zip" rel="noopener" target="_blank">
     <img alt="" class="dlIcon" height="24" src="../assets/svg/index/macosx64.svg" width="24"/>
     <div class="dlBody">
-        <span class="dlTitle">
+        <span class="dlTitle" data-i18n="downloads.card.macosx64.title">
             macOS x64
         </span>
-    <span class="dlSub">
+    <span class="dlSub" data-i18n="downloads.card.macosx64.sub">
         ZIP · Intel x64
     </span>
 </div>
-<span class="dlCTA">
+<span class="dlCTA" data-i18n="downloads.cta">
     Download
 </span>
 </a>
@@ -187,35 +202,35 @@
 <div aria-label="GitHub releases" class="releaseRow">
     <a class="releaseButton" href="https://github.com/ALE-Psych-Crew/ALE-Psych/releases" rel="noopener" target="_blank">
         <img alt="GitHub icon" height="20" src="../assets/svg/index/github.svg" width="20"/>
-        <span>
+        <span data-i18n="downloads.release.cta">
             Browse GitHub Releases
         </span>
-</a>
-<span class="releaseNote">
+    </a>
+<span class="releaseNote" data-i18n="downloads.release.note">
     Find stable builds and full changelog details.
 </span>
 </div>
 <section aria-label="Notes" id="dlNotes">
     <div class="noteCard">
-        <h2>
+        <h2 data-i18n="downloads.notes.title">
             Notes
         </h2>
     <ul>
         <li>
-            Nightly builds may change often; for stability check the repository releases.
+            <span data-i18n="downloads.notes.item1">Nightly builds may change often; for stability check the repository releases.</span>
         </li>
     <li>
-        On Windows, if SmartScreen warns you, choose “More info” → “Run anyway”.
+        <span data-i18n="downloads.notes.item2">On Windows, if SmartScreen warns you, choose “More info” → “Run anyway”.</span>
     </li>
 <li>
-    On Linux, make the binary executable:
+    <span data-i18n="downloads.notes.item3">On Linux, make the binary executable:</span>
     <code>
         chmod +x ./ALE-Psych
     </code>
 .
 </li>
 <li>
-    On Android, enable installing APKs from unknown sources.
+    <span data-i18n="downloads.notes.item4">On Android, enable installing APKs from unknown sources.</span>
 </li>
 </ul>
 </div>
@@ -223,19 +238,19 @@
 </main>
 <footer id="aleFooter">
     <div class="footer-links">
-        <a href="https://github.com/ALE-Psych-Crew/ALE-Psych-Website" rel="noopener" target="_blank">
+        <a data-i18n="footer.contribute" href="https://github.com/ALE-Psych-Crew/ALE-Psych-Website" rel="noopener" target="_blank">
             Contribute to Website
         </a>
-    <a href="https://github.com/ALE-Psych-Crew/ALE-Psych?tab=readme-ov-file#latest-builds" rel="noopener" target="_blank">
+    <a data-i18n="footer.builds" href="https://github.com/ALE-Psych-Crew/ALE-Psych?tab=readme-ov-file#latest-builds" rel="noopener" target="_blank">
         Latest Builds
     </a>
-<a href="../wiki/index.html" rel="noopener" target="_blank">
+<a data-i18n="footer.wiki" href="../wiki/index.html" rel="noopener" target="_blank">
     Engine Wiki
 </a>
-<a href="https://github.com/ALE-Psych-Crew/ALE-Psych/blob/main/docs/lua/Home.md" rel="noopener" target="_blank">
+<a data-i18n="footer.api" href="https://github.com/ALE-Psych-Crew/ALE-Psych/blob/main/docs/lua/Home.md" rel="noopener" target="_blank">
     Engine API (Lua)
 </a>
-<a href="https://github.com/topics/ale-psych" rel="noopener" target="_blank">
+<a data-i18n="footer.topic" href="https://github.com/topics/ale-psych" rel="noopener" target="_blank">
     Git Topic (ALE Psych)
 </a>
 </div>
@@ -254,7 +269,7 @@
 </a>
 </div>
 </footer>
-<div id="footerCredits">
+<div data-i18n="footer.credits" id="footerCredits">
     ALE Psych [Rewritten] · Created by Alejo GD Official and THE VOID · Website by ImMalloy
 </div>
 </body>
