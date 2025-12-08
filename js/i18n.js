@@ -80,7 +80,7 @@
     if (translationCache[normalized]) return Promise.resolve(translationCache[normalized]);
     if (pendingLoads[normalized]) return pendingLoads[normalized];
 
-    const path = `/assets/i18n/${normalized}.json`;
+    const path = getAssetPath(`assets/i18n/${normalized}.json`);
     const promise = fetch(path)
       .then((resp) => {
         if (!resp.ok) {
@@ -147,6 +147,25 @@
     selector.addEventListener('change', (e) => {
       loadAndApply(e.target.value);
     });
+  }
+
+  function getAssetPath(relativePath) {
+    // Try to infer the repository base from this script tag to support GH Pages subpaths.
+    const script = document.currentScript || document.querySelector('script[src*="i18n.js"]');
+    if (script?.src) {
+      try {
+        const url = new URL(script.src, window.location.href);
+        const basePath = url.pathname.replace(/js\/i18n\.js(?:\?.*)?$/, '');
+        return `${basePath}${relativePath}`;
+      } catch (e) {
+        // fall through to pathname fallback
+      }
+    }
+
+    // Fallback: use the first path segment as the repo base (e.g., /ALE-Psych-Website/).
+    const [, firstSegment = ''] = window.location.pathname.split('/');
+    const prefix = firstSegment ? `/${firstSegment}/` : '/';
+    return `${prefix}${relativePath}`;
   }
 
   function init() {
